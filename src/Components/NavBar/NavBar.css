@@ -1,0 +1,16 @@
+.navbar .navbar__wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.navbar .navbar__wrapper .navbar__item a {
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+.navbar .navbar__wrapper .navbar__item .active {
+    color: #ABC9A6;
+}
