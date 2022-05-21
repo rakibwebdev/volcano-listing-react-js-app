@@ -59,8 +59,6 @@ function Login() {
             </form>
             {error && <p className='text-danger'>{error}</p>}
             {isLoading && <p className='text-info'>Loading...</p>}
-
-
         </div>
     )
 }
