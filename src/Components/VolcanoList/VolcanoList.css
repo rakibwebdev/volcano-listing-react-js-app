@@ -1,0 +1,19 @@
+.volcano-list__section {
+    margin-top: 30px;
+}
+
+.volcano-list__section .search__form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.volcano-list__section .search__form .search__form-left,
+.volcano-list__section .search__form .search__form-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
