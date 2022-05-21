@@ -15,7 +15,7 @@ function App() {
         <Route path="/login" element={< Login />} />
         <Route path="/register" element={< Register />} />
         <Route path="/volcanolist" element={< VolcanoList />} />
-        <Route path="/VolcanoDetails" element={< VolcanoDetails />} />
+        <Route path="/volcano/:id" element={< VolcanoDetails />} />
       </Routes>
     </Router>
   );
