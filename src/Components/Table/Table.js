@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './Table.css';
 function Table(props) {
     const { volcanoes, search } = props;
-    console.log(search);
     return (
         <div>
             <table className="table table-striped">
@@ -14,23 +14,7 @@ function Table(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {volcanoes.filter(volcano => volcano.region.toLowerCase().includes(search.toLowerCase())).map(volcano => {
-                        return (
-                            <tr key={volcano.id}>
-                                <td>{volcano.name}</td>
-                                <td>{volcano.region}</td>
-                                <td>
-                                    {volcano.subRegion.map(subRegion => {
-                                        return (
-                                            <p key={subRegion.id}>{subRegion.name}, </p>
-                                        )
-                                    }
-                                    )}
-                                </td>
-                            </tr>
-                        )
-                    })
-                    }
+                    {volcanoes}
                 </tbody>
             </table>
 

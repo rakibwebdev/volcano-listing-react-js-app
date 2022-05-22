@@ -1,17 +1,18 @@
 import React from 'react';
 import { useState } from 'react';
-import { useEffect } from 'react';
-import ReactPaginate from 'react-paginate';
 import Table from '../Table/Table';
-import './VolcanoList.css';
+import './VolcanoList.css'; 
+import { Link } from 'react-router-dom';
+import ReactPaginate from 'react-paginate';
 
 function VolcanoList() {
     const [volcanoes, setVolcanoes] = React.useState([
         {
             id: 1,
             name: 'Mount Cook',
+            country: 'Japan',
             region: 'New Zealand',
-            subRegion: [
+            subregion: [
                 {
                     id: 1,
                     name: 'Auckland',
@@ -25,8 +26,9 @@ function VolcanoList() {
         {
             id: 2,
             name: 'Mount Cook',
+            country: 'Japan',
             region: 'New Zealand',
-            subRegion: [
+            subregion: [
                 {
                     id: 1,
                     name: 'Auckland',
@@ -40,8 +42,9 @@ function VolcanoList() {
         {
             id: 3,
             name: 'Mount Cook',
+            country: 'Russia',
             region: 'Bangladesh',
-            subRegion: [
+            subregion: [
                 {
                     id: 1,
                     name: 'Auckland',
@@ -65,7 +68,7 @@ function VolcanoList() {
         },
         {
             id: 3,
-            name: 'New Zealand',
+            name: 'Japan',
         }
     ]);
 
@@ -75,6 +78,37 @@ function VolcanoList() {
         e.preventDefault();
         setSearch(e.target.region.value);
     }
+
+    const [pageNumber, setPageNumber] = useState(1);
+    
+    const perPage = 2;
+    const pagesVisited = pageNumber * perPage;
+    const pageCount = Math.ceil(volcanoes.length / perPage);
+    const displayVolcanoes = volcanoes.slice(pagesVisited - perPage, pagesVisited).map(volcano => {
+        return (
+            volcano.country.toLowerCase().includes(search.toLowerCase()) ? (
+                <tr key={volcano.id}>
+                    <td>
+                        <Link to={`/volcano/${volcano.id}`}>
+                            {volcano.name}
+                        </Link>
+                    </td>
+                    <td>{volcano.region}</td>
+                    <td>
+                        {volcano.subregion.map(subregion => {
+                            return (
+                                <p key={subregion.id}>{subregion.name}, </p>
+                            )
+                        }
+                        )}
+                    </td>
+                </tr>
+            ) : null
+        )
+    }
+    )
+
+
     return (
         <div className='volcano-list__section'>
             <form className="search__form" onSubmit={handleSubmit}>
@@ -96,10 +130,29 @@ function VolcanoList() {
                 </div>
 
             </form>
-            <Table volcanoes={volcanoes} search={search} />
+            <div className="volcano-list__table">
+                
+            </div>
+            <Table volcanoes={displayVolcanoes} search={search} />
+
+            <div className="volcano-list__pagination">
+                <ReactPaginate
+                    previousLabel={'previous'}
+                    nextLabel={'next'}
+                    breakLabel={'...'}
+                    breakClassName={'break-me'}
+                    pageCount={pageCount}
+                    onPageChange={(e) => {
+                        setPageNumber(e.selected + 1);
+                    }
+                    }
+                    containerClassName={'pagination'}
+                />
+            </div>
+
 
         </div>
     )
 }
 
-export default VolcanoList
+export default VolcanoList;

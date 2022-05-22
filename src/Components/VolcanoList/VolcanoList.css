@@ -17,3 +17,11 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.volcano-list__pagination .pagination {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
