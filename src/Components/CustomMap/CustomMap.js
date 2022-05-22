@@ -1,12 +1,19 @@
 import { Map, Marker } from "pigeon-maps";
+import { useState } from "react";
 function CustomMap(props) {
     const { latitude, longitude } = props;
-    console.log(latitude, longitude);
+    
+    const [zoom, setZoom] = useState(11)
     return (
-        <Map height={300} defaultCenter={[latitude, longitude]} defaultZoom={11}>
-            <Marker width={50} anchor={[longitude, longitude]} />
-        </Map>
-
-    );
+        <Map
+            height={300}
+            center={center}
+            zoom={zoom}
+            onBoundsChanged={({ center, zoom }) => {
+                setCenter(center)
+                setZoom(zoom)
+            }}
+        />
+    )
 }
 export default CustomMap;
