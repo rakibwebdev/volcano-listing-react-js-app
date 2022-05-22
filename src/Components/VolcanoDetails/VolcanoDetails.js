@@ -2,37 +2,19 @@ import React, { Fragment } from 'react'
 import CustomMap from '../CustomMap/CustomMap';
 import Chart from '../Chart/Chart';
 import './VolcanoDetails.css';
+import {useEffect} from 'react';
 function VolcanoDetails() {
-    const VolcanoDetails = 
-        {
-            id: 1,
-            name: 'Mount Cook',
-            country: 'Japan',
-            region: 'New Zealand',
-            subregion: [
-                {
-                    id: 1,
-                    name: 'Auckland',
-                },
-                {
-                    id: 2,
-                    name: 'Herosima',
-                },
-            ],
-            last_eruption: '2020-01-01',
-            summit: '2020-01-01',
-            elevation: '2020-01-01',
-            latitude: "44°00'N",
-            longitude: "144°15'E",
-            population_5km: 4000,
-            population_10km: 4000,
-            population_30km: 4000,
-            population_100km: 4000,
-
-    }
-    
+    const [volcano, setVolcano] = React.useState();
     // get the id from the url
     const id = window.location.pathname.split('/')[2];
+    useEffect(() => {
+        fetch(`http://sefdb02.qut.edu.au:3001/volcanoes/${id}`)
+            .then((response) => response.json())
+            .then((data) => {
+                setVolcano(data);
+            }
+        )
+    }, []);
     return (
         <Fragment>
             <div className='volcano-detials__section'>

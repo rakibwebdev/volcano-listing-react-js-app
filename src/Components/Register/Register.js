@@ -1,7 +1,6 @@
 import React from 'react'
 
 function Register() {
-    const registerAPI = 'http://sefdb02.qut.edu.au:3001/user/register';
     const [register, setRegister] = React.useState({
         email: '',
         password: ''
@@ -19,7 +18,7 @@ function Register() {
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsLoading(true);
-        fetch(registerAPI, {
+        fetch(`http://sefdb02.qut.edu.au:3001/user/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

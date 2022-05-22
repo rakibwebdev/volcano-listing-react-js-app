@@ -1,7 +1,6 @@
 import React from 'react'
 
 function Login() {
-    const loginAPI = 'http://sefdb02.qut.edu.au:3001/user/login';
     const [login, setLogin] = React.useState({
         email: '',
         password: ''
@@ -19,7 +18,7 @@ function Login() {
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsLoading(true);
-        fetch(loginAPI, {
+        fetch(`http://sefdb02.qut.edu.au:3001/user/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

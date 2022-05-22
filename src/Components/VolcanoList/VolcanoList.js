@@ -1,78 +1,35 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Table from '../Table/Table';
 import './VolcanoList.css'; 
 import { Link } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 
 function VolcanoList() {
-    const [volcanoes, setVolcanoes] = React.useState([
-        {
-            id: 1,
-            name: 'Mount Cook',
-            country: 'Japan',
-            region: 'New Zealand',
-            subregion: [
-                {
-                    id: 1,
-                    name: 'Auckland',
-                },
-                {
-                    id: 2,
-                    name: 'Herosima',
-                },
-            ]
-        },
-        {
-            id: 2,
-            name: 'Mount Cook',
-            country: 'Japan',
-            region: 'New Zealand',
-            subregion: [
-                {
-                    id: 1,
-                    name: 'Auckland',
-                },
-                {
-                    id: 2,
-                    name: 'Herosima',
-                },
-            ]
-        },
-        {
-            id: 3,
-            name: 'Mount Cook',
-            country: 'Russia',
-            region: 'Bangladesh',
-            subregion: [
-                {
-                    id: 1,
-                    name: 'Auckland',
-                },
-                {
-                    id: 2,
-                    name: 'Herosima',
-                },
-            ]
-        }
+    
+    const [volcanoes, setVolcanoes] = React.useState();
+    const [countries, setCountries] = React.useState();
 
-    ]);
-    const [countries, setCountries] = React.useState([
-        {
-            id: 1,
-            name: 'New Zealand',
-        },
-        {
-            id: 2,
-            name: 'Bangladesh',
-        },
-        {
-            id: 3,
-            name: 'Japan',
-        }
-    ]);
+    useEffect(() => {
+        fetch(`http://sefdb02.qut.edu.au:3001/countries`)
+            .then((response) => response.json())
+            .then((data) => {
+                setCountries(data);
+            }
+        )
+    }, []);
 
-    const [search, setSearch] = useState('');
+    useEffect(() => {
+        fetch(`http://sefdb02.qut.edu.au:3001/volcanoes?country=${search}`)
+            .then((response) => response.json())
+            .then((data) => {
+                setVolcanoes(data);
+            }
+        )
+    }, []);
+    console.log(volcanoes);
+
+    const [search, setSearch] = useState('japan');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -81,12 +38,12 @@ function VolcanoList() {
 
     const [pageNumber, setPageNumber] = useState(1);
     
-    const perPage = 2;
+    const perPage = 10;
     const pagesVisited = pageNumber * perPage;
-    const pageCount = Math.ceil(volcanoes.length / perPage);
-    const displayVolcanoes = volcanoes.slice(pagesVisited - perPage, pagesVisited).map(volcano => {
+    const pageCount = Math.ceil(volcanoes && volcanoes.length / perPage);
+    const displayVolcanoes = volcanoes && volcanoes.slice(pagesVisited - perPage, pagesVisited).map(volcano => {
         return (
-            volcano.country.toLowerCase().includes(search.toLowerCase()) ? (
+            volcanoes && volcano.country.toLowerCase().includes(search.toLowerCase()) ? (
                 <tr key={volcano.id}>
                     <td>
                         <Link to={`/volcano/${volcano.id}`}>
@@ -95,12 +52,7 @@ function VolcanoList() {
                     </td>
                     <td>{volcano.region}</td>
                     <td>
-                        {volcano.subregion.map(subregion => {
-                            return (
-                                <p key={subregion.id}>{subregion.name}, </p>
-                            )
-                        }
-                        )}
+                        {volcano.subregion}
                     </td>
                 </tr>
             ) : null
@@ -116,12 +68,16 @@ function VolcanoList() {
                     <h2>Country:</h2>
                     <select name="region" id="region">
                         <option value="">Select Country</option>
-                        {countries.map(region => {
-                            return (
-                                <option key={region.id} value={region.name}>{region.name}</option>
-                            )
+                        {
+                            countries && countries.map(country => {
+                                return (
+                                    <option key={Math.random()} value={country}>{country}</option>
+                                )
+                            })
+
                         }
-                        )}
+                        
+                        
                     </select>
                 </div>
                 <div className="search__form-right">
