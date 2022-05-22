@@ -1,6 +1,8 @@
-import {Bar} from 'react-chartjs-2';
-function Chart(props) {
-    const { VolcanoDetails } = props;
+import { Bar } from 'react-chartjs-2';
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
+function MyChart(props) {
+    const { population_5km, population_10km, population_30km, population_100km } = props;
     return (
         <div className="chart">
             <Bar
@@ -14,7 +16,7 @@ function Chart(props) {
                             borderWidth: 1,
                             hoverBackgroundColor: 'rgba(255,99,132,0.4)',
                             hoverBorderColor: 'rgba(255,99,132,1)',
-                            data: [VolcanoDetails.population_5km, VolcanoDetails.population_10km, VolcanoDetails.population_30km, VolcanoDetails.population_100km]
+                            data: [population_5km, population_10km, population_30km, population_100km]
                         }
                     ]
                 }}
@@ -27,8 +29,10 @@ function Chart(props) {
                         }]
                     }
                 }}
+
             />
+
         </div>
     )
 }
-export default Chart;
+export default MyChart;

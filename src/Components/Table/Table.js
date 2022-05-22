@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './Table.css';
 function Table(props) {
-    const { volcanoes, search } = props;
+    const { volcanoes } = props;
     return (
         <div>
             <table className="table table-striped">

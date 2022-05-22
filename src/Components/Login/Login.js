@@ -42,24 +42,32 @@ function Login() {
             );
     }
 
-    return (
-        <div className='login__section'>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <div className='form-group'>
-                    <label htmlFor='email'>Email</label>
-                    <input type='email' className='form-control' id='email' name='email' value={login.email} onChange={handleChange} />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor='password'>Password</label>
-                    <input type='password' className='form-control' id='password' name='password' value={login.password} onChange={handleChange} />
-                </div>
-                <button type='submit' className='btn btn-primary'>Login</button>
-            </form>
-            {error && <p className='text-danger'>{error}</p>}
-            {isLoading && <p className='text-info'>Loading...</p>}
-        </div>
-    )
+    // get the token from local storage
+    const token = localStorage.getItem('token');
+    if (token) {
+        return (
+            <h1>You are already logged in</h1>
+        )
+    } else {
+        return (
+            <div className='login__section'>
+                <h1>Login</h1>
+                <form onSubmit={handleSubmit}>
+                    <div className='form-group'>
+                        <label htmlFor='email'>Email</label>
+                        <input type='email' className='form-control' id='email' name='email' value={login.email} onChange={handleChange} />
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor='password'>Password</label>
+                        <input type='password' className='form-control' id='password' name='password' value={login.password} onChange={handleChange} />
+                    </div>
+                    <button type='submit' className='btn btn-primary'>Login</button>
+                </form>
+                {error && <p className='text-danger'>{error}</p>}
+                {isLoading && <p className='text-info'>Loading...</p>}
+            </div>
+        )
+    }
 }
 
 export default Login

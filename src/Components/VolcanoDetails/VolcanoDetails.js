@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import CustomMap from '../CustomMap/CustomMap';
-import Chart from '../Chart/Chart';
+import MyChart from '../MyChart/MyChart';
 import './VolcanoDetails.css';
 import { useEffect } from 'react';
 function VolcanoDetails() {
@@ -26,6 +26,12 @@ function VolcanoDetails() {
             }
             )
     }, []);
+    const latitude = volcano && volcano.latitude;
+    const longitude = volcano && volcano.longitude;
+    const population_5km = volcano && volcano.population_5km;
+    const population_10km = volcano && volcano.population_10km;
+    const population_30km = volcano && volcano.population_30km;
+    const population_100km = volcano && volcano.population_100km;
     return (
         <Fragment>
             <div className='volcano-detials__section'>
@@ -39,12 +45,12 @@ function VolcanoDetails() {
                     <p>Elevention: {volcano && volcano.elevation}</p>
                 </div>
                 <div className='right'>
-                    <CustomMap latitude={volcano && volcano.latitude} longitude={volcano && volcano.longitude} />
+                    <CustomMap latitude={latitude} longitude={longitude} />
                 </div>
             </div>
-            {/* <div className='volcano-detials__section-chart'>
-                <Chart VolcanoDetails={VolcanoDetails} />
-            </div> */}
+            <div className='volcano-detials__section-chart'>
+                <MyChart population_5km={population_5km} population_10km={population_10km} population_30km={population_30km} population_100km={population_100km} />
+            </div>
         </Fragment>
     )
 }
