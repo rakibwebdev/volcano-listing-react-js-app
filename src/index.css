@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
 body {
   margin: 0px;
   padding: 0px;
+  font-family: 'Quicksand', sans-serif;
 }
 
 ul,
@@ -8,17 +11,36 @@ li {
   list-style: none;
   margin: 0px;
   padding: 0px;
+  font-family: 'Quicksand', sans-serif;
 }
 
 a {
   text-decoration: none;
+  font-family: 'Quicksand', sans-serif;
+  cursor: pointer;
 }
 
 .app-container {
-  padding: 20px;
+  padding: 20px 50px;
 }
 
 .img-responsive {
   width: 100%;
   height: auto;
+}
+
+table {
+  font-family: 'Quicksand', sans-serif;
+}
+
+
+button {
+  font-family: 'Quicksand', sans-serif;
+  cursor: pointer;
+  padding: 6px 15px;
+  background-color: #ABC9A6;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
 }

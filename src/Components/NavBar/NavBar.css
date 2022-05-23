@@ -1,16 +1,36 @@
+.navbar {
+    margin-bottom: 60px;
+}
+
 .navbar .navbar__wrapper {
     display: flex;
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
     gap: 15px;
+
 }
 
 .navbar .navbar__wrapper .navbar__item a {
     font-size: 20px;
-    text-decoration: underline;
+    font-weight: 600;
+}
+
+.navbar .navbar__wrapper .navbar__item a:hover {
+    color: #ABC9A6;
 }
 
 .navbar .navbar__wrapper .navbar__item .active {
     color: #ABC9A6;
+    position: relative;
+}
+
+.navbar .navbar__wrapper .navbar__item .active::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #ABC9A6;
+    bottom: 0;
+    left: 0;
 }

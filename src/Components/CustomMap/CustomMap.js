@@ -11,7 +11,7 @@ function CustomMap(props) {
     });
     const color = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
     return (
-        <Map height={300} center={center} defaultZoom={zoom}>
+        <Map height={500} center={center} defaultZoom={zoom}>
             <Marker
                 width={50}
                 anchor={center}

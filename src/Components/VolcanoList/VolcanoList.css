@@ -8,6 +8,11 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.volcano-list__section .search__form h2 {
+    margin-right: 10px;
 }
 
 .volcano-list__section .search__form .search__form-left,
@@ -18,6 +23,25 @@
     align-items: center;
 }
 
+.volcano-list__section .search__form .search__form-left select,
+.volcano-list__section .search__form .search__form-right select {
+    width: auto;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 20px;
+}
+
+.volcano-list__section .search__form .search__form-right button {
+    padding: 6px 15px;
+    background-color: #ABC9A6;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+}
+
 .volcano-list__pagination .pagination {
     display: flex;
     flex-direction: row;
@@ -25,4 +49,27 @@
     justify-content: space-around;
     align-items: center;
     margin-top: 50px;
+}
+
+.volcano-list__pagination {
+    width: 50%;
+    float: right;
+}
+
+.volcano-list__pagination .pagination li {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.volcano-list__pagination .pagination .disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.volcano-list__pagination .pagination .selected {
+    background-color: #ABC9A6;
+    color: #fff;
 }

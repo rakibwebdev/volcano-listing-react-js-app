@@ -6,12 +6,16 @@
 .table-striped th {
     width: 33.33%;
     text-align: start;
-    padding: 10px;
+    padding: 18px;
     border-spacing: 0px;
 }
 
+.table-striped th {
+    padding: 28px;
+}
+
 .table-striped tr {
-    border: 1px solid red;
+    border: 1px solid #ccc;
 }
 
 .table-striped th {
@@ -21,4 +25,8 @@
 
 .table-striped td p {
     float: left;
+}
+
+table {
+    border-collapse: collapse;
 }
