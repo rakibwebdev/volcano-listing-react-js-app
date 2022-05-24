@@ -38,7 +38,7 @@ function Register() {
             );
     }
     const token = localStorage.getItem('token');
-    if (token) {
+    if (token != null) {
         return (
             <h1>You are already registed</h1>
         )

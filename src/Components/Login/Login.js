@@ -44,7 +44,7 @@ function Login() {
 
     // get the token from local storage
     const token = localStorage.getItem('token');
-    if (token) {
+    if (token != null) {
         return (
             <h1>You are already logged in</h1>
         )
