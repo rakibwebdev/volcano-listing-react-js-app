@@ -44,7 +44,6 @@ function VolcanoList() {
             }
         );
     }
-    const token = localStorage.getItem('token');
 
     const [pageNumber, setPageNumber] = useState(1);
 
@@ -56,12 +55,7 @@ function VolcanoList() {
             volcanoes && volcano.country.toLowerCase().includes(search.region.toLowerCase()) ? (
                 <tr key={volcano.id}>
                     <td>
-                        {
-                            token == null ?
-                                `${ volcano.name }` :
-                                <Link to={`/volcano/${volcano.id}`}>{volcano.name}</Link>
-                        }
-                        
+                    <Link to={`/volcano/${volcano.id}`}>{volcano.name}</Link>  
                     </td>
                     <td>{volcano.region}</td>
                     <td>
